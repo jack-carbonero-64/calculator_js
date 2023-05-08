@@ -61,6 +61,56 @@ export class Calculator {
     }
 
     /**
+     * Setup the keyboard events to use the calculator
+     */
+    setupKeyboardEvents() {
+        document.addEventListener("keydown", (event) => {
+            const name = event.key.toUpperCase();
+
+            if (name === "BACKSPACE") {
+                this.removeLastCharacter();
+                this.addTemporaryClass(this.#backspaceButton, "buttonHover", 100);
+            } else if (name === "R" || name === "C") {
+                this.reset();
+                this.addTemporaryClass(this.#resetButton, "buttonHover", 100);
+            } else if (name === "=" || name === "ENTER") {
+                this.computeResult();
+                this.addTemporaryClass(this.#equalButton, "buttonHover", 100);
+            } else if (name === ".") {
+                this.addDecimalCharacter(this.#decimalButton.textContent);
+                this.addTemporaryClass(this.#decimalButton, "buttonHover", 100);
+            } else {
+                let i;
+                let isFound = false;
+
+                i = 0;
+
+                while (!isFound && i < this.#numberButtons.length) {
+                    if (name === this.#numberButtons[i].textContent) {
+                        this.addNumberCharacter(name);
+                        this.addTemporaryClass(this.#numberButtons[i], "buttonHover", 100);
+                        isFound = true;
+                    }
+
+                    i++;
+                }
+
+                i = 0;
+
+                while (!isFound && i < this.#operatorButtons.length) {
+                    if (name === this.#operatorButtons[i].textContent) {
+                        this.addOperatorCharacter(name);
+                        this.addTemporaryClass(this.#operatorButtons[i], "buttonHover", 100);
+                        isFound = true;
+                    }
+
+                    i++;
+                }
+            }
+        });
+    }
+
+    /**
      * Add a number on the screen
      *
      * @param {string} numberChar Number to add on the screen
@@ -246,6 +296,21 @@ export class Calculator {
         setTimeout(() => {
             this.#displayScreen.textContent = oldValue;
             this.#displayScreen.classList.remove("waitingScreen");
+        }, time);
+    }
+
+    /**
+     * Add a temporary class to a element for a given time
+     *
+     * @param {Node} element Element to add the class
+     * @param {string} className Class to add
+     * @param {number} time Time in milliseconds during which the element has the specified class
+     */
+    addTemporaryClass(element, className, time) {
+        element.classList.add(className);
+
+        setTimeout(() => {
+            element.classList.remove(className);
         }, time);
     }
 }

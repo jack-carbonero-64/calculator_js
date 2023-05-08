@@ -126,7 +126,8 @@ button {
     background: lightgray;
 }
 
-button:hover {
+button:hover,
+.buttonHover {
     background: #ffffff;
 }
 

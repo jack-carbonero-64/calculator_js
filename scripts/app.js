@@ -23,3 +23,4 @@ const calculator = new Calculator(
 );
 
 calculator.setupMouseEvents();
+calculator.setupKeyboardEvents();
