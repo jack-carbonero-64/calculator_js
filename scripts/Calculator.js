@@ -187,7 +187,7 @@ export class Calculator {
         if (expression.length === 0) return;
 
         // Check the validity of the expression
-        const regex = /^(\d+(\.\d*)?)( [/*+-] (\d+(\.\d*)?))*$/gm;
+        const regex = /^( - )?(\d+(\.\d*)?)( [/*+-] (\d+(\.\d*)?))*$/gm;
 
         if (!regex.test(expression)) {
             this.printAndWait("Invalid mathematical expression", 4000);
@@ -196,6 +196,8 @@ export class Calculator {
 
         // Split the expression and convert the number characters
         const expressionSplitted = expression.split(" ");
+
+        if (expressionSplitted[0] === "") expressionSplitted[0] = 0;
 
         for (let i = 0; i < expressionSplitted.length; i += 2) expressionSplitted[i] = Number(expressionSplitted[i]);
 
@@ -229,7 +231,9 @@ export class Calculator {
             }
         }
 
-        this.#displayScreen.textContent = expressionSplitted[0];
+        // Format result
+        if (expressionSplitted[0] < 0) this.#displayScreen.textContent = " - " + expressionSplitted[0] * -1;
+        else this.#displayScreen.textContent = expressionSplitted[0];
     }
 
     /**
