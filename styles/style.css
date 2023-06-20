@@ -18,3 +18,121 @@ html {
     font-family: arial, sans-serif;
     font-size: 40px;
 }
+
+/* Global */
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: space-around;
+
+    height: 100%;
+}
+
+h1 {
+    font-size: 55px;
+    text-decoration: underline;
+}
+
+/* Calculator */
+
+#calculator {
+    display: grid;
+    grid-template: auto / repeat(4, 1fr);
+
+    height: 700px;
+    width: 600px;
+    margin: 30px;
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background: #1a2225;
+}
+
+#displayScreen {
+    height: 130px;
+    margin: 25px;
+    padding: 10px;
+
+    text-align: right;
+
+    overflow-y: scroll;
+    overflow-wrap: anywhere;
+
+    border-radius: 20px;
+    background: #8aa29e;
+}
+
+/* Display screen's scrollbar */
+
+#displayScreen::-webkit-scrollbar {
+    width: 30px;
+}
+
+#displayScreen::-webkit-scrollbar-button:single-button {
+    height: 50%;
+    border-radius: 20px;
+}
+
+/* Down button */
+#displayScreen::-webkit-scrollbar-button:single-button:vertical:increment {
+    background-image: url("../images/down-arrow.svg");
+    background-size: contain;
+    background-position-y: center;
+    background-repeat: no-repeat;
+}
+
+#displayScreen::-webkit-scrollbar-button:single-button:vertical:increment:hover {
+    background-color: lightgray;
+}
+
+#displayScreen::-webkit-scrollbar-button:single-button:vertical:increment:active {
+    background-color: gray;
+}
+
+/* Up button */
+#displayScreen::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background-image: url("../images/up-arrow.svg");
+    background-size: contain;
+    background-position-y: center;
+    background-repeat: no-repeat;
+}
+
+#displayScreen::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+    background-color: lightgray;
+}
+
+#displayScreen::-webkit-scrollbar-button:single-button:vertical:decrement:active {
+    background-color: gray;
+}
+
+/* Grid */
+
+button {
+    font-size: 1em;
+    margin: 10px;
+
+    cursor: pointer;
+
+    border-radius: 20px;
+    background: lightgray;
+}
+
+button:hover {
+    background: #ffffff;
+}
+
+.gridRowSpan-2 {
+    grid-row: span 2;
+}
+
+.gridColSpan-2 {
+    grid-column: span 2;
+}
+
+.gridColSpan-4 {
+    grid-column: span 4;
+}
