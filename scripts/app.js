@@ -21,3 +21,5 @@ const calculator = new Calculator(
     numberButtons,
     operatorButtons
 );
+
+calculator.setupMouseEvents();
