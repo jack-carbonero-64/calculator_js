@@ -66,6 +66,11 @@ h1 {
     background: #8aa29e;
 }
 
+.waitingScreen {
+    text-align: center !important;
+    background: rgb(247, 108, 108) !important;
+}
+
 /* Display screen's scrollbar */
 
 #displayScreen::-webkit-scrollbar {
